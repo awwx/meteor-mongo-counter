@@ -1,8 +1,3 @@
-
-path = Npm.require('path')
-Future = Npm.require(path.join('fibers', 'future'))
-
-
 getRawMongoCollection = (collectionName) ->
   if MongoInternals?
     MongoInternals.defaultRemoteCollectionDriver().mongo._getCollection(collectionName)
@@ -11,7 +6,7 @@ getRawMongoCollection = (collectionName) ->
 
 
 getCounterCollection = ->
-  getRawMongoCollection('awwx_autoincrement_counter')
+  getRawMongoCollection('awwx_mongo_counter')
 
 
 callCounter = (method, args...) ->
@@ -28,20 +23,37 @@ _deleteCounters = ->
   callCounter('remove', {}, {safe: true})
 
 
-_incrementCounter = (counterName) ->
+_incrementCounter = (counterName, amount = 1) ->
   newDoc = callCounter(
     'findAndModify',
     {_id: counterName},         # query
     null,                       # sort
-    {$inc: {seq: 1}},           # update
+    {$inc: {seq: amount}},      # update
     {new: true, upsert: true},  # options
   )                             # callback added by wrapAsync
   return newDoc.seq
 
 
+_decrementCounter = (counterName, amount = 1) ->
+  _incrementCounter(counterName, -amount)
+
+
+_setCounter = (counterName, value) ->
+  callCounter(
+    'update',
+    {_id: counterName},
+    {$set: {seq: value}}
+  )
+  return
+
+
 if Package?
   incrementCounter = _incrementCounter
+  decrementCounter = _decrementCounter
+  setCounter = _setCounter
   deleteCounters = _deleteCounters
 else
   @incrementCounter = _incrementCounter
+  @decrementCounter = _decrementCounter
+  @setCounter = _setCounter
   @deleteCounters = _deleteCounters

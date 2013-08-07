@@ -1,19 +1,23 @@
-# autoincrement-counter
+# mongo-counter
 
-Autoincrementing sequence counters stored in MongoDB.
+Atomic counters stored in MongoDB.
 
-An autoincrementing sequence returns consecutive integers (1, 2,
-3...), with the counter stored in the database.
+Incrementing a counter returns consecutive integers (1, 2, 3...), with
+the counter stored in the database.
 
-It is safe to make concurrent calls to `incrementCounter`.  If the
-current value of a counter is `6` and two Meteor methods call
-`incrementCounter` at the same time, one will receive `7` and the
-other `8`.
+It is safe to make concurrent calls to `incrementCounter` and
+`decrementCounter`.  If the current value of a counter is `6` and two
+Meteor methods call `incrementCounter` at the same time, one will
+receive `7` and the other `8`.
+
+This package is called <i>mongo</i>-counter because it works directly
+with MongoDB's facilities for atomic updates; it doesn't go through
+Meteor's collection code.
 
 
 ## Version
 
-1.0.1
+1.1.0
 
 Meteor linker supported:
 This implementation works with both pre-linker Meteor (0.6.4.1 and
@@ -22,7 +26,7 @@ below) and the new "linker" version of Meteor (0.6.5-rc12 and above).
 
 ## API
 
-**incrementCounter(name)** &nbsp; *server*
+**incrementCounter(name, [amount])** &nbsp; *server*
 
 Increments a database counter and returns the new value.
 
@@ -31,17 +35,61 @@ Increments a database counter and returns the new value.
 <dl>
   <dt>name: string</dt>
   <dd>The name of the counter to increment.</dd>
+
+  <dt>amount: integer</dt>
+  <dd>The amount to increment the counter by, defaulting to one.</dd>
 </dl>
 
 Increments the counter named *name* in the database, and atomically
 returns the new value.  Returns `1` for a new counter.
 
 
-## Usage
+**decrementCounter(name, [amount])** &nbsp; *server*
 
-Autoincrementing counters are useful in situations where you want to
-create a humanly readable identifier that is guaranteed to be unique,
-such as an order or invoice number.
+Decrements a database counter and returns the new value.
+
+*Arguments*
+
+<dl>
+  <dt>name: string</dt>
+  <dd>The name of the counter to decrement.</dd>
+
+  <dt>amount: integer</dt>
+  <dd>The amount to decrement the counter by, defaulting to one.</dd>
+</dl>
+
+Decrements the counter named *name* in the database, and atomically
+returns the new value.
+
+
+**setCounter(name, value)** &nbsp; *server*
+
+Sets a counter.
+
+*Arguments*
+
+<dl>
+  <dt>name: string</dt>
+  <dd>The name of the counter to set.</dd>
+
+  <dt>value: integer</dt>
+  <dd>The value to set the counter to.</dd>
+</dl>
+
+Sets the counter to the specified value.
+
+This is primarily useful for setting a new counter to an initial
+value.  (If a counter was currently 10 and one method called
+`incrementCounter` while another simultaneously called `setCounter`
+with a value of 0, it would be indeterminate whether the first method
+received 11 or 1).
+
+
+## Using a counter for a humanly readable id
+
+Counters can be used when you want to create a humanly readable
+identifier that is guaranteed to be unique, such as an order or
+invoice number.
 
 Typically you wouldn't want to use a counter number as the _id of a
 document, unless the document is only ever created on the server.
@@ -73,7 +121,7 @@ implementation accesses Mongo directly without going through a Meteor
 Collection.
 
 The Mongo collection used to store counter values is
-"awwx_autoincrement_counter".  Accessing this collection with
+"awwx_mongo_counter".  Accessing this collection with
 a Meteor Collection isn't recommended, because changes made by
 `incrementCounter` aren't reported back to Meteor.
 
@@ -81,7 +129,7 @@ a Meteor Collection isn't recommended, because changes made by
 ## Support
 
 Is this package useful or important to you?  Support its maintenance
-and avoid the dreaded Dead Package Syndrome :-)
+and avoid the dreaded Dead Package Syndrome! :-)
 
 Make a weekly contribution of your own choice with
 [Gittip](https://www.gittip.com/awwx/).
