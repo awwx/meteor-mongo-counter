@@ -13,7 +13,7 @@ other `8`.
 
 ## Version
 
-1.0.0
+1.0.1
 
 Meteor linker supported:
 This implementation works with both pre-linker Meteor (0.6.4.1 and
