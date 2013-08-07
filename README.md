@@ -18,14 +18,14 @@ other `8`.
 
 ## API
 
-`incrementCounter(*name*)` **server**
+incrementCounter(name) *server*
 
 Increments a database counter and returns the new value.
 
 *Arguments*
 
 <dl>
-  <dt>**name** string</dt>
+  <dt><b>name</b> string</dt>
   <dd>The name of the counter to increment.</dd>
 </dl>
 
