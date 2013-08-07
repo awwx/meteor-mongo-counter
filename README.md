@@ -25,7 +25,7 @@ Increments a database counter and returns the new value.
 *Arguments*
 
 <dl>
-  <dt><b>name</b> string</dt>
+  <dt>name: string</dt>
   <dd>The name of the counter to increment.</dd>
 </dl>
 
