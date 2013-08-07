@@ -12,7 +12,8 @@ receive `7` and the other `8`.
 
 This package is called <i>mongo</i>-counter because it works directly
 with MongoDB's facilities for atomic updates; it doesn't go through
-Meteor's collection code.
+Meteor's collection code.  (Thus it only works with Meteor deployments
+that use a MongoDB database).
 
 
 ## Version
@@ -25,6 +26,8 @@ below) and the new "linker" version of Meteor (0.6.5-rc12 and above).
 
 
 ## API
+
+### incrementCounter
 
 **incrementCounter(name, [amount])** &nbsp; *server*
 
@@ -44,6 +47,8 @@ Increments the counter named *name* in the database, and atomically
 returns the new value.  Returns `1` for a new counter.
 
 
+### decrementCounter
+
 **decrementCounter(name, [amount])** &nbsp; *server*
 
 Decrements a database counter and returns the new value.
@@ -61,6 +66,8 @@ Decrements a database counter and returns the new value.
 Decrements the counter named *name* in the database, and atomically
 returns the new value.
 
+
+### setCounter
 
 **setCounter(name, value)** &nbsp; *server*
 
