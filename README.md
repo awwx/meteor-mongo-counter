@@ -55,7 +55,7 @@ or disconnected.
 
 This package implements the "Counters Collection" technique described
 in the MongoDB documentation
-[http://docs.mongodb.org/manual/tutorial/create-an-auto-incrementing-field/#a-counters-collection](Create an Auto-Incrementing Sequence Field).
+[Create an Auto-Incrementing Sequence Field](http://docs.mongodb.org/manual/tutorial/create-an-auto-incrementing-field/#a-counters-collection).
 
 Using the Mongo `findAndModify` method makes incrementing the counter
 and reading the new value atomically safe.  (If we first incremented
@@ -65,7 +65,7 @@ the counter twice and then both return the same doubly incremented
 number).
 
 Since Meteor doesn't yet support Mongo's `findAndModify`, the
-implementation accesses Mongo directly without using a Meteor
+implementation accesses Mongo directly without going through a Meteor
 Collection.
 
 The Mongo collection used to store counter values is
