@@ -80,11 +80,11 @@ a Meteor Collection isn't recommended, because changes made by
 
 ## Support
 
-Do you find this package useful?  Would you like to see it continue to
-be maintained?  :-)
+Is this package useful or important to you?  Support its maintenance
+and avoid the dreaded Dead Package Syndrome :-)
 
-Make a weekly contribution of your own choice to supporting this
-package with [Gittip](https://www.gittip.com/awwx/).
+Make a weekly contribution of your own choice with
+[Gittip](https://www.gittip.com/awwx/).
 
 Not sure what to give?  While the amount is entirely up to you, a
 weekly contribution of $1 is entirely reasonable if you're relying on
