@@ -15,10 +15,14 @@ other `8`.
 
 1.0.0
 
+Meteor linker supported:
+This implementation works with both pre-linker Meteor (0.6.4.1 and
+below) and the new "linker" version of Meteor (0.6.5-rc12 and above).
+
 
 ## API
 
-**incrementCounter(name)** *server*
+**incrementCounter(name)** &nbsp; *server*
 
 Increments a database counter and returns the new value.
 
