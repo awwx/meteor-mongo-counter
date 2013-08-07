@@ -18,7 +18,7 @@ other `8`.
 
 ## API
 
-incrementCounter(name) *server*
+**incrementCounter(name)** *server*
 
 Increments a database counter and returns the new value.
 
