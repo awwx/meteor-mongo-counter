@@ -1,7 +1,7 @@
 {
   "name": "autoincrement-counter",
 
-  "description": "Autoincrementing sequence counters stored in MongoDB"
+  "description": "Autoincrementing sequence counters stored in MongoDB",
 
   "homepage": "https://github.com/awwx/meteor-autoincrement-counter#readme",
 
