@@ -52,7 +52,9 @@ Increments a database counter and returns the new value.
 </dl>
 
 Increments the counter named *name* in the database, and atomically
-returns the new value.  Returns `1` for a new counter.
+returns the new value.  New counters conceptually start at zero, so if
+you increment a new counter by one you will receive one on the first
+call.
 
 
 ### decrementCounter
