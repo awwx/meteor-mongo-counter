@@ -6,15 +6,15 @@ Incrementing a counter returns consecutive integers (1, 2, 3...), with
 the counter stored in the database.
 
 It is safe to make concurrent calls to `incrementCounter` and
-`decrementCounter`.  If the current value of a counter is `6` and two
+`decrementCounter`.  If the current value of a counter is 6 and two
 Meteor methods call `incrementCounter` at the same time, one will
-receive `7` and the other `8`.
+receive 7 and the other 8.
 
 This package is called <i>mongo</i>-counter because it works directly
 with MongoDB's facilities for atomic updates; it doesn't go through
 Meteor's collection code.  (Thus it only works with Meteor deployments
-that use a MongoDB database... if, for example, a SQL database was
-being used, there would need to be a "sql-counter" package to
+that use a MongoDB database.  If, for example, a SQL database was
+being used instead, there would need to be a "sql-counter" package to
 implement atomic counters in SQL).
 
 Note that mongo-counter doesn't increment fields in a *Meteor*
