@@ -17,10 +17,11 @@ that use a MongoDB database.  If, for example, a SQL database was
 being used instead, there would need to be a "sql-counter" package to
 implement atomic counters in SQL).
 
-Note that mongo-counter doesn't increment fields in a *Meteor*
-document.  Counters are separate.  When you increment or decrement a
-counter, you can take the return value (the new value of the counter),
-and *store* that result in a Meteor document if you want.
+Note that counters are not stored in Meteor documents.  The package
+doesn't increment a field in a document inside of a Meteor collection.
+But when you increment or decrement a counter, you can take the new
+value of the counter that is returned to you and store that value in a
+Meteor document if you want.
 
 
 ## Version
