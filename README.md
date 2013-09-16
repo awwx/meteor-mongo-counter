@@ -147,15 +147,21 @@ a Meteor Collection isn't recommended, because changes made by
 `incrementCounter` aren't reported back to Meteor.
 
 
-## Support
+## Donate
 
-Is this package useful or important to you?  Support its maintenance
-and avoid the dreaded Dead Package Syndrome! :-)
+An easy and effective way to support the continued maintenance of this
+package and the development of new and useful packages is to [donate
+through Gittip](https://www.gittip.com/awwx/).
 
-Make a weekly contribution of your own choice with
-[Gittip](https://www.gittip.com/awwx/).
+Gittip is a [platform for sustainable
+crowd-funding](https://www.gittip.com/about/faq.html).
 
-Not sure what to give?  While the amount is entirely up to you, a
-weekly contribution of $1 is entirely reasonable if you're relying on
-this package for something important, such as a commercial endeavor.
-25&cent; is a cool amount for a personal contribution.
+Help build an ecosystem of well maintained, quality Meteor packages by
+joining the
+[Gittip Meteor Community](https://www.gittip.com/for/meteor/).
+
+
+## Hire
+
+Need support, debugging, or development for your project?  You can
+[hire me](http://awwx.ws/hire-me) to help out.
