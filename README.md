@@ -17,7 +17,7 @@ that use a MongoDB database.  If, for example, a SQL database was
 being used instead, there would need to be a "sql-counter" package to
 implement atomic counters in SQL).
 
-Note that counters are not stored in Meteor documents: this package
+Note that counters are *not* stored in a Meteor document: this package
 doesn't increment a field in a document inside of a Meteor collection.
 But when you increment or decrement a counter, you can take the new
 value of the counter that is returned to you and store that value in a
@@ -38,6 +38,12 @@ below) and the new "linker" version of Meteor (0.6.5-rc12 and above).
 
 
 ## API
+
+Note that this API is defined on the server only, and that these
+functions are not defined in the client.  To access them from the
+client, create a Meteor method on the server that calls the API,
+and then call the method from the client.
+
 
 ### incrementCounter
 
