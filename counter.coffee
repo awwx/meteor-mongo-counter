@@ -5,8 +5,8 @@ getRawMongoCollection = (collectionName) ->
     Meteor._RemoteCollectionDriver.mongo._getCollection(collectionName)
 
 
-getCounterCollection = ->
-  getRawMongoCollection('awwx_mongo_counter')
+getCounterCollection = (collectionName) ->
+  getRawMongoCollection(collectionName)
 
 
 callCounter = (method, args...) ->
