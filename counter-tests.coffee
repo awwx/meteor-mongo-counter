@@ -1,4 +1,4 @@
-Tinytest.add 'mongo-counter', (test) ->
+Tinytest.add 'konecty-mongo-counter', (test) ->
   deleteCounters()
   test.equal incrementCounter('foo'), 1
   test.equal incrementCounter('foo'), 2
