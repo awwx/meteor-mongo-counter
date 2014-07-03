@@ -9,8 +9,8 @@ getCounterCollection = (collectionName) ->
   getRawMongoCollection(collectionName)
 
 
-callCounter = (method, args...) ->
-  Counters = getCounterCollection()
+callCounter = (method, collectionName, args...) ->
+  Counters = getCounterCollection(collectionName)
   if Meteor._wrapAsync?
     Meteor._wrapAsync(_.bind(Counters[method], Counters))(args...)
   else
@@ -19,13 +19,14 @@ callCounter = (method, args...) ->
     future.wait()
 
 
-_deleteCounters = ->
-  callCounter('remove', {}, {safe: true})
+_deleteCounters = (collectionName) ->
+  callCounter('remove', collectionName, {}, {safe: true})
 
 
-_incrementCounter = (counterName, amount = 1) ->
+_incrementCounter = (collectionName, counterName, amount = 1) ->
   newDoc = callCounter(
     'findAndModify',
+    collectionName,
     {_id: counterName},         # query
     null,                       # sort
     {$inc: {seq: amount}},      # update
@@ -34,13 +35,14 @@ _incrementCounter = (counterName, amount = 1) ->
   return newDoc.seq
 
 
-_decrementCounter = (counterName, amount = 1) ->
-  _incrementCounter(counterName, -amount)
+_decrementCounter = (collectionName, counterName, amount = 1) ->
+  _incrementCounter(collectionName, counterName, -amount)
 
 
-_setCounter = (counterName, value) ->
+_setCounter = (collectionName, counterName, value) ->
   callCounter(
     'update',
+    collectionName,
     {_id: counterName},
     {$set: {seq: value}}
   )
