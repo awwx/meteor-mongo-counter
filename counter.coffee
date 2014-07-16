@@ -29,10 +29,10 @@ _incrementCounter = (collectionName, counterName, amount = 1) ->
     collectionName,
     {_id: counterName},         # query
     null,                       # sort
-    {$inc: {seq: amount}},      # update
+    {$inc: {next_val: amount}},      # update
     {new: true, upsert: true},  # options
   )                             # callback added by wrapAsync
-  return newDoc.seq
+  return newDoc.next_val
 
 
 _decrementCounter = (collectionName, counterName, amount = 1) ->
@@ -44,7 +44,7 @@ _setCounter = (collectionName, counterName, value) ->
     'update',
     collectionName,
     {_id: counterName},
-    {$set: {seq: value}}
+    {$set: {next_val: value}}
   )
   return
 
