@@ -11,8 +11,8 @@ getCounterCollection = (collectionName) ->
 
 callCounter = (method, collectionName, args...) ->
   Counters = getCounterCollection(collectionName)
-  if Meteor._wrapAsync?
-    Meteor._wrapAsync(_.bind(Counters[method], Counters))(args...)
+  if Meteor.wrapAsync?
+    Meteor.wrapAsync(_.bind(Counters[method], Counters))(args...)
   else
     future = new (Npm.require(Npm.require('path').join('fibers', 'future')))()
     Counters[method].call(Counters, args..., future.resolver())
