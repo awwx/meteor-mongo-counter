@@ -1,16 +1,9 @@
-getRawMongoCollection = (collectionName) ->
-  if MongoInternals?
-    MongoInternals.defaultRemoteCollectionDriver().mongo._getCollection(collectionName)
-  else
-    Meteor._RemoteCollectionDriver.mongo._getCollection(collectionName)
+getCounterCollection = (collection) ->
+  collection.rawCollection()
 
 
-getCounterCollection = (collectionName) ->
-  getRawMongoCollection(collectionName)
-
-
-callCounter = (method, collectionName, args...) ->
-  Counters = getCounterCollection(collectionName)
+callCounter = (method, collection, args...) ->
+  Counters = getCounterCollection(collection)
   if Meteor.wrapAsync?
     Meteor.wrapAsync(_.bind(Counters[method], Counters))(args...)
   else
@@ -19,14 +12,14 @@ callCounter = (method, collectionName, args...) ->
     future.wait()
 
 
-_deleteCounters = (collectionName) ->
-  callCounter('remove', collectionName, {}, {safe: true})
+_deleteCounters = (collection) ->
+  callCounter('remove', collection, {}, {safe: true})
 
 
-_incrementCounter = (collectionName, counterName, amount = 1) ->
+_incrementCounter = (collection, counterName, amount = 1) ->
   newDoc = callCounter(
     'findAndModify',
-    collectionName,
+    collection,
     {_id: counterName},         # query
     null,                       # sort
     {$inc: {next_val: amount}},      # update
@@ -35,14 +28,14 @@ _incrementCounter = (collectionName, counterName, amount = 1) ->
   return newDoc.next_val
 
 
-_decrementCounter = (collectionName, counterName, amount = 1) ->
-  _incrementCounter(collectionName, counterName, -amount)
+_decrementCounter = (collection, counterName, amount = 1) ->
+  _incrementCounter(collection, counterName, -amount)
 
 
-_setCounter = (collectionName, counterName, value) ->
+_setCounter = (collection, counterName, value) ->
   callCounter(
     'update',
-    collectionName,
+    collection,
     {_id: counterName},
     {$set: {next_val: value}}
   )
