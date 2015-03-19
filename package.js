@@ -1,13 +1,9 @@
 Package.describe({
-  summary: "Atomic counters stored in MongoDB",
-  version : '0.0.2'
+  summary: "Atomic counters stored in MongoDB"
 });
 
 Package.on_use(function (api) {
-  api.versionsFrom('1.0.4');
-
   api.use(['coffeescript', 'mongo-livedata'], 'server');
-
   if (api.export) {
     api.export('incrementCounter', 'server');
     api.export('decrementCounter', 'server');
