@@ -44,16 +44,24 @@ functions are not defined in the client.  To access them from the
 client, create a Meteor method on the server that calls the API,
 and then call the method from the client.
 
+Create a Meteor Collection to hold the counter. 
+
+**Counters = new Mongo.Collection('counters');**
+
+Pass the Counters collection to each of the API described below. 
 
 ### incrementCounter
 
-**incrementCounter(name, [amount])** &nbsp; *server*
+**incrementCounter(collection, name, [amount])** &nbsp; *server*
 
 Increments a database counter and returns the new value.
 
 *Arguments*
 
 <dl>
+  <dt>collection: Meteor Collection</dt>
+  <dd>The Collection that will hold all the Mongo Counters.</dd>
+
   <dt>name: string</dt>
   <dd>The name of the counter to increment.</dd>
 
@@ -69,13 +77,16 @@ call.
 
 ### decrementCounter
 
-**decrementCounter(name, [amount])** &nbsp; *server*
+**decrementCounter(collection, name, [amount])** &nbsp; *server*
 
 Decrements a database counter and returns the new value.
 
 *Arguments*
 
 <dl>
+  <dt>collection: Meteor Collection</dt>
+  <dd>The Collection that will hold all the Mongo Counters.</dd>
+
   <dt>name: string</dt>
   <dd>The name of the counter to decrement.</dd>
 
@@ -89,13 +100,16 @@ returns the new value.
 
 ### setCounter
 
-**setCounter(name, value)** &nbsp; *server*
+**setCounter(collection, name, value)** &nbsp; *server*
 
 Sets a counter.
 
 *Arguments*
 
 <dl>
+  <dt>collection: Meteor Collection</dt>
+  <dd>The Collection that will hold all the Mongo Counters.</dd>
+  
   <dt>name: string</dt>
   <dd>The name of the counter to set.</dd>
 
