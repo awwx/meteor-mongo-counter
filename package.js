@@ -1,7 +1,7 @@
 Package.describe({
   name: 'konecty:mongo-counter',
   summary: "Atomic counters stored in MongoDB",
-  version: "0.0.5_1",
+  version: "0.0.5_2",
   git: "https://github.com/Konecty/meteor-mongo-counter.git"
 });
 
