@@ -5,7 +5,7 @@ Package.describe({
   git: "https://github.com/Konecty/meteor-mongo-counter.git"
 });
 
-Package.on_use(function (api) {
+Package.onUse(function (api) {
   api.versionsFrom("METEOR@0.9.0");
   api.use(['coffeescript', 'mongo-livedata'], 'server');
   api.addFiles('counter.coffee', 'server');
@@ -17,7 +17,9 @@ Package.on_use(function (api) {
   }
 });
 
-//Package.on_test(function(api) {
-//  api.use(['coffeescript', 'tinytest', "konecty:mongo-counter"]);
-//  api.addFiles('counter-tests.coffee', 'server');
-//});
+Package.onTest(function(api) {
+  api.use('coffeescript');
+  api.use('tinytest');
+  api.use('konecty:mongo-counter');
+  api.addFiles('counter-tests.coffee', 'server');
+});
