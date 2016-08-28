@@ -2,7 +2,7 @@
 
 This is an ancient implementation that I wrote long ago and no longer support.
 
-You might one of the forks to see if there's one that will work for you.
+You might try one of the forks to see if there's one that would work for you.
 
 
 # mongo-counter
