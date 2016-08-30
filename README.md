@@ -165,23 +165,3 @@ The Mongo collection used to store counter values is
 "awwx_mongo_counter".  Accessing this collection with
 a Meteor Collection isn't recommended, because changes made by
 `incrementCounter` aren't reported back to Meteor.
-
-
-## Donate
-
-An easy and effective way to support the continued maintenance of this
-package and the development of new and useful packages is to [donate
-through Gittip](https://www.gittip.com/awwx/).
-
-Gittip is a [platform for sustainable
-crowd-funding](https://www.gittip.com/about/faq.html).
-
-Help build an ecosystem of well maintained, quality Meteor packages by
-joining the
-[Gittip Meteor Community](https://www.gittip.com/for/meteor/).
-
-
-## Hire
-
-Need support, debugging, or development for your project?  You can
-[hire me](http://awwx.ws/hire-me) to help out.
